@@ -4,15 +4,21 @@ defmodule Imagestat do
   """
 
   @doc """
-  Hello world.
+  The principal function of the program
+  which takes the `filename` as params and return the colors stats.
 
   ## Examples
 
-      iex> Imagestat.hello()
-      :world
-
+      iex> Imagestat.main("something.png")
   """
-  def hello do
-    :world
+  def main(filename) do
+    filename
+    |> open_file
+  end
+
+  def open_file(filename) do
+    img =
+      filename
+      |> File.read!()
   end
 end
