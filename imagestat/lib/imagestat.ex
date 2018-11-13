@@ -13,12 +13,12 @@ defmodule Imagestat do
   """
   def main(filename) do
     filename
-    |> open_file
+    |> image_infos
   end
 
-  def open_file(filename) do
-    img =
-      filename
-      |> File.read!()
+  def image_infos(filename) do
+    {_, infos_fast} = filename |> Fastimage.info()
+    %{size: size} = filename |> File.stat!()
+    Map.put_new(infos_fast, :size_in_bit, size)
   end
 end
